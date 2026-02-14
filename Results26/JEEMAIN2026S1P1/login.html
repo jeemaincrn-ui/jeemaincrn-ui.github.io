@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JEE Main Login</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.logo-left{
+  height:60px !important;
+  width:auto !important;
+}
+
+.logo-right{
+  height:120px !important;
+  width:auto !important;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="topbar">
+
+<img src="logo.png" class="logo-left">
+
+<div class="main-heading">
+JOINT ENTRANCE EXAMINATION (MAIN)-2026<br>
+SESSION 1 (JANUARY 2026)<br>
+NTA SCORE CARD: Paper 1 (B.E./B Tech.)
+</div>
+
+<img src="logo2.png" class="logo-right">
+
+</div>
+
+<div class="blue-divider"></div>
+
+
+<div class="container">
+    <form onsubmit="return checkLogin()">
+
+<h2 class="result-heading">
+    <span class="lock-box">
+        <i class="fa-solid fa-lock"></i>
+    </span>
+    View Result
+</h2>
+
+
+<div class="form-group">
+    <label>Application Number <span style="color:red">*</span> :</label>
+    <input type="text" id="roll">
+</div>
+
+
+<div class="form-group">
+    <label>Password :</label>
+    <div class="input-area">
+        <div class="password-wrapper">
+   <input type="password" id="dob">
+   <span class="toggle-eye" onclick="togglePassword()">
+      <i class="fa-solid fa-eye"></i>
+   </span>
+</div>
+        
+    </div>
+</div>
+
+
+<div class="form-group">
+    <label>
+        Enter CAPTCHA 
+        <span class="green-text">(case sensitive)</span> :
+    </label>
+    <input type="text" id="userCaptcha">
+</div>
+<div id="errorMsg" class="error-box"></div>
+<div class="form-group captcha-row">
+  <label>CAPTCHA :</label>
+
+
+<div class="captcha-container">
+    <div id="captchaBox"></div>
+ <span class="refresh-icon" onclick="generateCaptcha()">
+        <i class="fa-solid fa-rotate"></i>
+    </span>
+</div>
+</div>
+
+<div class="login-wrapper">
+   <button class="login-btn" id="loginBtn" type="submit">
+   <span id="btnText">LOGIN</span>
+   <span id="loader" class="loader"></span>
+</button>
+<a href="#" class="forgot-link">Forgot Password ?</a>
+</div>
+</div>
+</form>
+
+
+
+
+<div class="footer">
+    This site is designed and hosted by NIC PEP Division. The contents are provided by NTA. For any further information, please contact NTA.
+</div>
+
+<script>
+
+var captcha = "";
+
+function generateCaptcha(){
+  var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  captcha = "";
+  for(let i=0;i<5;i++){
+    captcha += chars[Math.floor(Math.random()*chars.length)];
+  }
+  document.getElementById("captchaBox").innerHTML = captcha;
+}
+
+generateCaptcha();
+
+
+
+function resetBtn(){
+   const btn = document.getElementById("loginBtn");
+   const text = document.getElementById("btnText");
+   const loader = document.getElementById("loader");
+
+   btn.disabled = false;
+   text.innerText = "LOGIN";
+   loader.style.display = "none";
+}
+
+function checkLogin(){
+
+   var app = document.getElementById("roll").value;
+   var pass = document.getElementById("dob").value;
+   var userCaptcha = document.getElementById("userCaptcha").value;
+
+   if(app !== "1234567890"){
+      alert("Invalid Application Number");
+      return false;
+   }
+
+   if(pass !== "password123"){
+      alert("Wrong Password");
+      return false;
+   }
+
+   if(userCaptcha !== captcha){
+      alert("Wrong CAPTCHA");
+      return false;
+   }
+
+   // If all correct → go to result page
+   window.location.href="result.html";
+   return false;
+}
+
+
+
+function togglePassword(){
+   const pass = document.getElementById("dob");
+   const icon = document.querySelector(".toggle-eye i");
+
+   if(pass.type === "password"){
+      pass.type = "text";
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+   }else{
+      pass.type = "password";
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+   }
+}
+
+
+</script>
+
+</body>
+</html>
