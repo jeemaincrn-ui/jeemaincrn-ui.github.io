@@ -121,15 +121,52 @@ button{
 }
 
 .result-img{
-  width:900px;
-  max-width:100%;
+  width:100%;
   height:auto;
 }
+
 
 *{
   box-sizing:border-box;
 }
 
+@media print {
+
+  @page {
+    size: A4;
+    margin: 5mm;
+  }
+
+  body{
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  .topbar{
+    padding:5px 10px !important;
+  }
+
+  .button-bar{
+    display:none !important;
+  }
+
+  .blue-divider{
+    height:20px !important;
+  }
+
+  .result-wrapper{
+    margin-top:0 !important;
+    page-break-inside: avoid !important;
+  }
+
+  .result-img{
+    width:100% !important;
+    height:auto !important;
+    max-height:80vh !important;
+    object-fit:contain;
+  }
+
+}
 
 
 
