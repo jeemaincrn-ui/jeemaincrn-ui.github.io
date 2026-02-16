@@ -132,6 +132,11 @@ button{
 
 @media print {
 
+ #printDateTime{
+  display:block !important;
+}
+
+
   @page {
     size: A4;
     margin: 5mm;
@@ -209,6 +214,8 @@ button{
    </div>
 </div>
 
+<div id="printDateTime" style="text-align:right; font-size:14px; margin:10px 20px;">
+</div>
 
 
 <div class="result-wrapper">
@@ -224,6 +231,14 @@ function printPage(){
 function closePage(){
    window.location.href="index.html";
 }
+
+ window.onload = function(){
+   const now = new Date();
+   const dateTime = now.toLocaleString();
+   document.getElementById("printDateTime").innerHTML =
+   "Printed on: " + dateTime;
+}
+
 </script>
 
 
