@@ -513,6 +513,30 @@ button{
   width:auto;
 }
 
+@media print {
+
+  body{
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  .button-bar{
+    display:none !important;
+  }
+
+  .result-wrapper{
+    margin-top:0 !important;
+    page-break-inside: avoid !important;
+  }
+
+  .result-img{
+    width:100% !important;
+    max-height:90vh !important;
+    object-fit:contain;
+  }
+
+}
+
 
 
 
